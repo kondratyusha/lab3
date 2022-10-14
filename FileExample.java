@@ -42,12 +42,17 @@ public class FileExample {
 	  File f = start;
 	  List<File> result = new ArrayList<>();
 	  result.add(start);
-	  if(f.isDirectory()) {
-      File[] paths = f.listFiles();
-      for(File subFile: paths) {
-        result.add(subFile);
+    for(int i=0; i<result.size(); i++){
+      if(result.get(i).isDirectory()) {
+        File[] paths = result.get(i).listFiles();
+        for(File subFile: paths) {
+          result.add(subFile);
+        }
+        result.remove(result.get(i));
+        i--;
       }
-	  }
+    }
+	  
 	  return result;
 	}
 }
